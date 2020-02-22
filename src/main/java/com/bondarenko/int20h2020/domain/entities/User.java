@@ -12,7 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue
     private String email;
     private String password;
     private int age;
