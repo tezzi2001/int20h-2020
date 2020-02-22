@@ -1,8 +1,13 @@
 package com.bondarenko.int20h2020.controllers;
 
+import com.bondarenko.int20h2020.domain.JWT;
+import com.bondarenko.int20h2020.domain.entities.BloodGroup;
+import com.bondarenko.int20h2020.domain.entities.Person;
 import com.bondarenko.int20h2020.services.ISignService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -18,5 +23,10 @@ public class SignController {
         return new HashMap<String, Boolean>() {{
             put("isExist", signService.checkEmail(email));
         }};
+    }
+
+    @PostMapping("/login")
+    public JWT authenticate(String email, String password, int age, String name, String region, String sex, int groupNumber, char rh) {
+        return signService.authenticate(new Person(email, password, age, name, region, sex, new BloodGroup(groupNumber, rh)));
     }
 }
