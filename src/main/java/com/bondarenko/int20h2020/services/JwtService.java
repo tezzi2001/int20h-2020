@@ -90,8 +90,8 @@ public class JwtService implements IJwtService{
         return com.auth0.jwt.JWT
                 .create()
                 .withIssuer(issuer)
-                .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis()+REFRESH_TOKEN_DURATION))
+                .withClaim("iat", new Date())
+                .withClaim("exp", new Date(System.currentTimeMillis()+REFRESH_TOKEN_DURATION))
                 .sign(algorithm);
     }
 
@@ -102,12 +102,12 @@ public class JwtService implements IJwtService{
                 .withClaim("name", user.getName())
                 .withClaim("region", user.getRegion())
                 .withClaim("sex", user.getSex())
-                .withClaim("age", (int)(new Date().getTime() - user.getBirthDate().getTime())/(365.25*60*60*1000))
+                .withClaim("age", Math.round(new Date().getTime() - user.getBirthDate().getTime())/(365.25*60*60*1000))
                 .withClaim("groupNumber", user.getBloodGroup().getGroupNumber())
                 .withClaim("rh", String.valueOf(user.getBloodGroup().getRh()))
                 .withIssuer(issuer)
-                .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis()+ACCESS_TOKEN_DURATION))
+                .withClaim("iat", new Date())
+                .withClaim("exp", new Date(System.currentTimeMillis()+ACCESS_TOKEN_DURATION))
                 .sign(algorithm);
     }
 }
