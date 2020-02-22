@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar target/int20h-2020.war --server.port=$PORT target/*.war
