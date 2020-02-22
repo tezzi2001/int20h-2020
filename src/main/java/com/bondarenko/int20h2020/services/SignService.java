@@ -35,7 +35,7 @@ public class SignService implements ISignService {
         Optional<Person> optionalUser = userRepository.getPersonByEmail(email);
         if (optionalUser.isPresent()) {
             System.out.println("debug: 1");
-            if (optionalUser.get().getPassword().equals(BCrypt.hashpw(password+localParameter, BCrypt.gensalt()))) {
+            if (BCrypt.checkpw(password+localParameter, optionalUser.get().getPassword())) {
                 System.out.println("debug: 2");
                 return jwtService.getTokensOnAuth(email, password, fingerprint);
             }
