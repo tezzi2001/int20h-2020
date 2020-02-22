@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class FindRecipient {
     @Id
@@ -18,4 +17,9 @@ public class FindRecipient {
     @JoinColumn(name = "person_email")
     private Person person;
     private int phone;
+
+    public FindRecipient(Person person, int phone) {
+        this.person = person;
+        this.phone = phone;
+    }
 }

@@ -8,7 +8,7 @@ import lombok.Data;
 public class FullDescription {
     private int age;
     private String email;
-    private String bloodGroup;
+    private int bloodGroup;
     private String name;
     private String region;
     private char rh;

@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class FindDonor {
     @Id
     @GeneratedValue
@@ -18,4 +17,9 @@ public class FindDonor {
     @JoinColumn(name = "person_email")
     private Person person;
     private int phone;
+
+    public FindDonor(Person person, int phone) {
+        this.person = person;
+        this.phone = phone;
+    }
 }
