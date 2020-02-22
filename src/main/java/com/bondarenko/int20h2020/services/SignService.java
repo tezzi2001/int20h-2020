@@ -14,7 +14,8 @@ public class SignService implements ISignService {
 
     @Override
     public JWT register(Person user) {
-        return null;
+        userRepository.save(user);
+        return jwtService.getTokensOnAuth(user.getEmail(), user.getPassword(), null);
     }
 
     @Override
