@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Session {
     @Id
-    private String login;
+    private String email;
     private String refreshToken;
     private String fingerprint;
     private Date expiresAt;
