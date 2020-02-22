@@ -87,7 +87,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.2.0.RELEASE</version>
                 <configuration>
-                    <mainClass>com.bondarenko.apps.boot_js_app.SpringBootTestApplication</mainClass>
+                    <mainClass>com.bondarenko.int20h2020.Int20h2020Application</mainClass>
                     <layout>WAR</layout>
                     <finalName>int20h-2020</finalName>
                 </configuration>
