@@ -102,7 +102,7 @@ public class JwtService implements IJwtService{
                 .withClaim("name", user.getName())
                 .withClaim("region", user.getRegion())
                 .withClaim("sex", user.getSex())
-                .withClaim("age", Math.round(new Date().getTime() - user.getBirthDate().getTime())/(365.25*60*60*1000))
+                .withClaim("age", Math.round(new Date().getTime() - user.getBirthDate().getTime())/(365.25*24*60*60*1000))
                 .withClaim("groupNumber", user.getBloodGroup().getGroupNumber())
                 .withClaim("rh", String.valueOf(user.getBloodGroup().getRh()))
                 .withIssuer(issuer)
