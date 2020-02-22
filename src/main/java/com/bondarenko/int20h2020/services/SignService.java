@@ -45,7 +45,7 @@ public class SignService implements ISignService {
 
     @Override
     public JWT refresh(String refreshToken, String fingerprint) {
-        return null;
+        return jwtService.refreshTokens(refreshToken, fingerprint);
     }
 
     @Override
