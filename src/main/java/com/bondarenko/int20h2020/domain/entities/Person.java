@@ -15,7 +15,7 @@ public class Person {
     @Id
     private String email;
     private String password;
-    private Date birthDate;
+    private int birthDate;
     private String name;
     private String region;
     private String sex;
