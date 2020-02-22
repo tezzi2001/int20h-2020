@@ -27,7 +27,7 @@ public class SignController {
     }
 
     @PostMapping("/login")
-    public JWT authenticate(String email, String password, Date birthDate, String name, String region, String sex, int groupNumber, char rh) {
-        return signService.authenticate(new Person(email, password, birthDate, name, region, sex, new BloodGroup(groupNumber, rh)));
+    public JWT authenticate(String email, String password) {
+        return signService.authenticate(email, password);
     }
 }
