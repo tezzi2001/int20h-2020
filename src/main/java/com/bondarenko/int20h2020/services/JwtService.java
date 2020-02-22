@@ -24,8 +24,8 @@ public class JwtService implements IJwtService{
     private final Algorithm algorithm = Algorithm.HMAC256(KeyGenerators.secureRandom(50).generateKey());
     private final String issuer = "heroku:spring-boot-rest-api-app";
 
-    private final int ACCESS_TOKEN_DURATION = 24*60*60*1000; // 1 day
-    private final int REFRESH_TOKEN_DURATION = 30*24*60*60*1000; // Token expires in 30 days
+    private final long ACCESS_TOKEN_DURATION = 24*60*60*1000; // 1 day
+    private final long REFRESH_TOKEN_DURATION = 30*24*60*60*1000; // Token expires in 30 days
 
     @Override
     public JWT refreshTokens(String oldRefreshToken, String fingerprint) {
