@@ -50,6 +50,6 @@ public class SignService implements ISignService {
 
     @Override
     public boolean checkEmail(String email) {
-        return false;
+        return userRepository.existsById(email);
     }
 }
