@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class SignController {
     }
 
     @PostMapping("/login")
-    public JWT authenticate(String email, String password, int age, String name, String region, String sex, int groupNumber, char rh) {
-        return signService.authenticate(new Person(email, password, age, name, region, sex, new BloodGroup(groupNumber, rh)));
+    public JWT authenticate(String email, String password, Date birthDate, String name, String region, String sex, int groupNumber, char rh) {
+        return signService.authenticate(new Person(email, password, birthDate, name, region, sex, new BloodGroup(groupNumber, rh)));
     }
 }

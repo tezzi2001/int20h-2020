@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -14,7 +15,7 @@ public class Person {
     @Id
     private String email;
     private String password;
-    private int age;
+    private Date birthDate;
     private String name;
     private String region;
     private String sex;
