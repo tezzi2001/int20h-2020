@@ -13,13 +13,13 @@ public class SignService implements ISignService {
     private IJwtService jwtService;
 
     @Override
-    public JWT register(Person user) {
+    public JWT register(Person user, String fingerprint) {
         userRepository.save(user);
-        return jwtService.getTokensOnAuth(user.getEmail(), user.getPassword(), null);
+        return jwtService.getTokensOnAuth(user.getEmail(), user.getPassword(), fingerprint);
     }
 
     @Override
-    public JWT authenticate(String email, String password) {
+    public JWT authenticate(String email, String password, String fingerprint) {
         return null;
     }
 
