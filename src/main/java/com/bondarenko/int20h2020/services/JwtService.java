@@ -62,8 +62,9 @@ public class JwtService implements IJwtService{
 
     @Override
     public JWT getTokensOnAuth(String email, String password, String fingerprint) {
-        Person user;
+        Person user = userRepository.getPersonByEmail(email).get();
         if (sessionRepository.existsSessionByFingerprint(fingerprint)) sessionRepository.deleteSessionByFingerprint(fingerprint);
+        userRepository.save(user); //костыль
         System.out.println("debug: 3");
         if (userRepository.getPersonByEmail(email).isPresent()) {
             user = userRepository.getPersonByEmail(email).get();
