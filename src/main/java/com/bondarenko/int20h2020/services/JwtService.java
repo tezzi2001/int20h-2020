@@ -83,7 +83,7 @@ public class JwtService implements IJwtService{
                 .build();
         DecodedJWT jwt = verifier.verify(accessToken);
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(Base64.getDecoder().decode(jwt.getPayload()), Person.class);
+        return userRepository.getPersonByEmail(mapper.readValue(Base64.getDecoder().decode(jwt.getPayload()), Person.class).getEmail()).orElse(null);
     }
 
     private String generateRefreshToken() {
@@ -96,15 +96,13 @@ public class JwtService implements IJwtService{
     }
 
     private String generateAccessToken(Person user) {
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.setTimeInMillis(new Date().getTime() - user.getBirthDate().getTime());
         return com.auth0.jwt.JWT
                 .create()
                 .withClaim("email", user.getEmail())
                 .withClaim("name", user.getName())
                 .withClaim("region", user.getRegion())
                 .withClaim("sex", user.getSex())
-                .withClaim("age", calendar.get(Calendar.YEAR))
+                .withClaim("age", (int)(new Date().getTime() - user.getBirthDate().getTime())/(365.25*60*60*1000))
                 .withClaim("groupNumber", user.getBloodGroup().getGroupNumber())
                 .withClaim("rh", String.valueOf(user.getBloodGroup().getRh()))
                 .withIssuer(issuer)
