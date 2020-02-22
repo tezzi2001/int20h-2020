@@ -9,6 +9,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 @PropertySource("classpath:application.properties")
@@ -32,6 +34,12 @@ public class SignService implements ISignService {
 
     @Override
     public JWT authenticate(String email, String password, String fingerprint) {
+        Optional<Person> optionalUser = userRepository.getPersonByEmail(email);
+        if (optionalUser.isPresent()) {
+            if (optionalUser.get().getPassword().equals(password)) {
+                return jwtService.getTokensOnAuth(email, password, fingerprint);
+            }
+        }
         return null;
     }
 
