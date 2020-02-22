@@ -5,14 +5,9 @@ import com.bondarenko.int20h2020.domain.entities.BloodGroup;
 import com.bondarenko.int20h2020.domain.entities.Person;
 import com.bondarenko.int20h2020.services.ISignService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @AllArgsConstructor
@@ -43,6 +38,6 @@ public class SignController {
 
     private Date parseDate(String date) {
         String[] parts = date.split("-");
-        return new Date(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+        return new GregorianCalendar(Integer.parseInt(parts[0]), Integer.parseInt(parts[1])-1, Integer.parseInt(parts[2])).getTime();
     }
 }
