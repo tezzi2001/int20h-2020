@@ -7,6 +7,7 @@ import com.bondarenko.int20h2020.domain.entities.Session;
 import com.bondarenko.int20h2020.repositories.SessionRepository;
 import com.bondarenko.int20h2020.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -15,19 +16,16 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class JwtService implements IJwtService{
-    private ISignService service;
     private SessionRepository sessionRepository;
     private UserRepository userRepository;
-    private final Algorithm algorithm;
-    private final String issuer;
+    private final Algorithm algorithm = Algorithm.HMAC256(KeyGenerators.secureRandom(50).generateKey());
+    private final String issuer = "heroku:spring-boot-rest-api-app";
 
     private final int ACCESS_TOKEN_DURATION = 24*60*60*1000; // 1 day
     private final int REFRESH_TOKEN_DURATION = 30*24*60*60*1000; // Token expires in 30 days
 
     @Override
     public JWT refreshTokens(String oldRefreshToken, String fingerprint) {
-        Map<String, String> tokens = new HashMap<>();
-
         Optional<Session> optSession = sessionRepository.getSessionByRefreshToken(oldRefreshToken);
         Session session;
         if (optSession.isPresent()) {

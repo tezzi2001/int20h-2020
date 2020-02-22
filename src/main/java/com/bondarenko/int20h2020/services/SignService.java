@@ -4,7 +4,6 @@ import com.bondarenko.int20h2020.domain.JWT;
 import com.bondarenko.int20h2020.domain.entities.Person;
 import com.bondarenko.int20h2020.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -17,8 +16,7 @@ import java.util.Optional;
 public class SignService implements ISignService {
     private UserRepository userRepository;
     private IJwtService jwtService;
-    @Value("${security.local-parameter}")
-    private String localParameter;
+    private final String localParameter = "dodo";
 
     @Override
     public JWT register(Person user, String fingerprint) {
