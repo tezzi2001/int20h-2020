@@ -64,15 +64,18 @@ public class JwtService implements IJwtService{
     public JWT getTokensOnAuth(String email, String password, String fingerprint) {
         Person user;
         if (sessionRepository.existsSessionByFingerprint(fingerprint)) sessionRepository.deleteSessionByFingerprint(fingerprint);
-
+        System.out.println("debug: 3");
         if (userRepository.getPersonByEmail(email).isPresent()) {
             user = userRepository.getPersonByEmail(email).get();
+            System.out.println("debug: 4");
         } else {
+            System.out.println("debug: 5");
             return null;
         }
 
         String refreshToken = generateRefreshToken();
         sessionRepository.save(new Session(fingerprint, user, refreshToken, new Date(System.currentTimeMillis()+REFRESH_TOKEN_DURATION), new Date(), new Date()));
+        System.out.println("debug: 6");
         return new JWT(refreshToken, generateAccessToken(user));
     }
 

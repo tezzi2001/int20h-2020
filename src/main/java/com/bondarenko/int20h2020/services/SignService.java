@@ -34,7 +34,9 @@ public class SignService implements ISignService {
     public JWT authenticate(String email, String password, String fingerprint) {
         Optional<Person> optionalUser = userRepository.getPersonByEmail(email);
         if (optionalUser.isPresent()) {
+            System.out.println("debug: 1");
             if (optionalUser.get().getPassword().equals(BCrypt.hashpw(password+localParameter, BCrypt.gensalt()))) {
+                System.out.println("debug: 2");
                 return jwtService.getTokensOnAuth(email, password, fingerprint);
             }
         }
