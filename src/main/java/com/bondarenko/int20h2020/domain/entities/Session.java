@@ -4,8 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -14,9 +13,11 @@ import java.util.Date;
 @AllArgsConstructor
 public class Session {
     @Id
-    private String email;
-    private String refreshToken;
     private String fingerprint;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_email")
+    private User user;
+    private String refreshToken;
     private Date expiresAt;
     private Date createdAt;
     private Date updatedAt;
