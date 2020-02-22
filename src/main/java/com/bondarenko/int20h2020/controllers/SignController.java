@@ -33,11 +33,16 @@ public class SignController {
 
     @PostMapping("/register")
     public JWT register(String email, String password, String birthDate, String name, String region, String sex, int groupNumber, char rh, String fingerprint) {
-        return signService.register(new Person(email, password, new Date(Date.parse(birthDate)), name, region, sex, new BloodGroup(groupNumber, rh)), fingerprint);
+        return signService.register(new Person(email, password, parseDate(birthDate), name, region, sex, new BloodGroup(groupNumber, rh)), fingerprint);
     }
 
     @PostMapping("/refresh")
     public JWT refresh(String refreshToken, String fingerprint) {
         return signService.refresh(refreshToken, fingerprint);
+    }
+
+    private Date parseDate(String date) {
+        String[] parts = date.split("-");
+        return new Date(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
     }
 }
