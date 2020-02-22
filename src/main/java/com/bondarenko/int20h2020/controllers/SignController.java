@@ -30,4 +30,9 @@ public class SignController {
     public JWT authenticate(String email, String password) {
         return signService.authenticate(email, password);
     }
+
+    @PostMapping("/register")
+    public JWT register(String email, String password, Date birthDate, String name, String region, String sex, int groupNumber, char rh) {
+        return signService.register(new Person(email, password, birthDate, name, region, sex, new BloodGroup(groupNumber, rh)));
+    }
 }
