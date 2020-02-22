@@ -15,6 +15,8 @@ public class Person {
     private String email;
     private String password;
     private int age;
+    private String name;
+    private String region;
     private String sex;
     private BloodGroup bloodGroup;
 }
