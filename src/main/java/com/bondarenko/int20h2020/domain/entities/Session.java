@@ -15,8 +15,8 @@ public class Session {
     @Id
     private String fingerprint;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "user_email")
-    private User user;
+    @JoinColumn(name = "person_email")
+    private Person person;
     private String refreshToken;
     private Date expiresAt;
     private Date createdAt;
