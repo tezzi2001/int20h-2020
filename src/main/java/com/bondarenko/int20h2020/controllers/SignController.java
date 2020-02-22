@@ -35,4 +35,9 @@ public class SignController {
     public JWT register(String email, String password, Date birthDate, String name, String region, String sex, int groupNumber, char rh) {
         return signService.register(new Person(email, password, birthDate, name, region, sex, new BloodGroup(groupNumber, rh)));
     }
+
+    @PostMapping("/refresh")
+    public JWT refresh(String refreshToken, String fingerprint) {
+        return signService.refresh(refreshToken, fingerprint);
+    }
 }
