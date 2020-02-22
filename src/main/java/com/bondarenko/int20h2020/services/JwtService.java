@@ -96,13 +96,15 @@ public class JwtService implements IJwtService{
     }
 
     private String generateAccessToken(Person user) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTimeInMillis(new Date().getTime() - user.getBirthDate().getTime());
         return com.auth0.jwt.JWT
                 .create()
                 .withClaim("email", user.getEmail())
                 .withClaim("name", user.getName())
                 .withClaim("region", user.getRegion())
                 .withClaim("sex", user.getSex())
-                .withClaim("age", new Date(new Date().getTime() - user.getBirthDate().getTime()).getYear())
+                .withClaim("age", calendar.get(Calendar.YEAR))
                 .withClaim("groupNumber", user.getBloodGroup().getGroupNumber())
                 .withClaim("rh", String.valueOf(user.getBloodGroup().getRh()))
                 .withIssuer(issuer)
