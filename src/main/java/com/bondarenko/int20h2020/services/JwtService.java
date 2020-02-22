@@ -1,11 +1,14 @@
 package com.bondarenko.int20h2020.services;
 
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bondarenko.int20h2020.domain.JWT;
 import com.bondarenko.int20h2020.domain.entities.Person;
 import com.bondarenko.int20h2020.domain.entities.Session;
 import com.bondarenko.int20h2020.repositories.SessionRepository;
 import com.bondarenko.int20h2020.repositories.UserRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Service;
@@ -75,7 +78,12 @@ public class JwtService implements IJwtService{
 
     @Override
     public Person getPersonFromToken(String accessToken) throws IOException {
-        return null;
+        JWTVerifier verifier = com.auth0.jwt.JWT.require(algorithm)
+                .withIssuer(issuer)
+                .build();
+        DecodedJWT jwt = verifier.verify(accessToken);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(Base64.getDecoder().decode(jwt.getPayload()), Person.class);
     }
 
     private String generateRefreshToken() {
@@ -102,13 +110,4 @@ public class JwtService implements IJwtService{
                 .withExpiresAt(new Date(System.currentTimeMillis()+ACCESS_TOKEN_DURATION))
                 .sign(algorithm);
     }
-
-//    private JWT getJWTFromToken(String token) throws IOException {
-//        JWTVerifier verifier = com.auth0.jwt.JWT.require(algorithm)
-//                .withIssuer(issuer)
-//                .build();
-//        DecodedJWT jwt = verifier.verify(token);
-//        ObjectMapper mapper = new ObjectMapper();
-//        return mapper.readValue(Base64.getDecoder().decode(jwt.getPayload()), JWT.class);
-//    }
 }
