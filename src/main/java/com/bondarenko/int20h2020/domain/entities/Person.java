@@ -24,4 +24,14 @@ public class Person {
     private BloodGroup bloodGroup;
     @ElementCollection
     private List<String> subscriptions = new ArrayList<>();
+
+    public void addSub(String email) {
+        if (subscriptions == null) subscriptions = new ArrayList<>();
+        subscriptions.add(email);
+    }
+
+    public void removeSub(String email) {
+        if (subscriptions == null) return;
+        subscriptions.remove(email);
+    }
 }
