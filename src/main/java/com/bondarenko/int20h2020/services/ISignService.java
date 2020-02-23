@@ -11,7 +11,7 @@ public interface ISignService {
     JWT refresh(String refreshToken, String fingerprint);
     boolean checkEmail(String email);
     Optional<Person> getUser(String email);
-    void changePassword(String password, String email);
-    void changeEmail(String email);
-    void changeName(String name, String email);
+    Person changePassword(String password, String email);
+    Person changeEmail(String email);
+    Person changeName(String name, String email);
 }

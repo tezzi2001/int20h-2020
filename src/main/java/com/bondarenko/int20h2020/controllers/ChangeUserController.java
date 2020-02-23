@@ -1,5 +1,6 @@
 package com.bondarenko.int20h2020.controllers;
 
+import com.bondarenko.int20h2020.domain.entities.Person;
 import com.bondarenko.int20h2020.services.ISignService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,17 +12,17 @@ public class ChangeUserController {
     private ISignService signService;
 
     @PostMapping("/changePassword")
-    public void changePassword(String password, String email) {
-        signService.changePassword(password, email);
+    public Person changePassword(String password, String email) {
+        return signService.changePassword(password, email);
     }
 
     @PostMapping("/changeEmail")
-    public void changeEmail(String email) {
-        signService.changeEmail(email);
+    public Person changeEmail(String email) {
+        return signService.changeEmail(email);
     }
 
     @PostMapping("/changeName")
-    public void changeName(String name, String email) {
-        signService.changeName(name, email);
+    public Person changeName(String name, String email) {
+        return signService.changeName(name, email);
     }
 }
