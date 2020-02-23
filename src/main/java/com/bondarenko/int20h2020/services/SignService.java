@@ -52,4 +52,9 @@ public class SignService implements ISignService {
     public boolean checkEmail(String email) {
         return userRepository.existsById(email);
     }
+
+    @Override
+    public Optional<Person> getUser(String email) {
+        return userRepository.getPersonByEmail(email);
+    }
 }

@@ -35,4 +35,9 @@ public class SignController {
     public JWT refresh(String refreshToken, String fingerprint) {
         return signService.refresh(refreshToken, fingerprint);
     }
+
+    @PostMapping("/getUser")
+    public Person getUser(String email) {
+        return signService.getUser(email).orElse(null);
+    }
 }
