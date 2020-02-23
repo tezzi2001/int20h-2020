@@ -5,9 +5,11 @@ import com.bondarenko.int20h2020.domain.entities.BloodGroup;
 import com.bondarenko.int20h2020.domain.entities.Person;
 import com.bondarenko.int20h2020.services.ISignService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor

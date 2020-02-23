@@ -1,9 +1,7 @@
 package com.bondarenko.int20h2020.domain.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint;
 
 import javax.persistence.*;
 
