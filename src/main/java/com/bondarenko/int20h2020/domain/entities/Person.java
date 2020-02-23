@@ -34,4 +34,9 @@ public class Person {
         if (subscriptions == null) return;
         subscriptions.remove(email);
     }
+
+    public String[] getSubAsArray() {
+        if (subscriptions == null) subscriptions = new ArrayList<>();
+        return subscriptions.toArray(new String[subscriptions.size()]);
+    }
 }

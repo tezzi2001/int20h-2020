@@ -109,6 +109,7 @@ public class JwtService implements IJwtService{
                 .withClaim("age", user.getBirthDate())
                 .withClaim("groupNumber", user.getBloodGroup().getGroupNumber())
                 .withClaim("rh", String.valueOf(user.getBloodGroup().getRh()))
+                .withArrayClaim("follows", user.getSubAsArray())
                 .withIssuer(issuer)
                 .withClaim("iat", new Date())
                 .withClaim("exp", new Date(System.currentTimeMillis()+ACCESS_TOKEN_DURATION))
