@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,4 +22,6 @@ public class Person {
     private String region;
     private String sex;
     private BloodGroup bloodGroup;
+    @ElementCollection
+    private List<String> subscriptions = new ArrayList<>();
 }
