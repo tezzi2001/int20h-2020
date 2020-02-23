@@ -14,6 +14,7 @@ public class SubscriptionService implements  ISubscriptionsService{
 
     @Override
     public List<String> getFollowers(String email) {
+        System.out.println("debug: email: " + email);
         return userRepository.getPersonByEmail(email).get().getSubscriptions();
     }
 

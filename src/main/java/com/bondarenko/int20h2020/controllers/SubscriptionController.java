@@ -14,8 +14,8 @@ import java.util.List;
 public class SubscriptionController {
     private ISubscriptionsService subscriptionsService;
 
-    @GetMapping("/getFollowers/{email}")
-    public List<String> getFollowers(@PathVariable String email) {
+    @PostMapping("/getFollowers")
+    public List<String> getFollowers(String email) {
         return subscriptionsService.getFollowers(email);
     }
 
