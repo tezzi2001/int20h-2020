@@ -27,6 +27,7 @@ public class Person {
 
     public void addSub(String email) {
         if (subscriptions == null) subscriptions = new ArrayList<>();
+        if (subscriptions.contains(email)) return;
         subscriptions.add(email);
     }
 
