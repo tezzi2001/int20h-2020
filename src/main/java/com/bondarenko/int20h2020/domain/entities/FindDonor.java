@@ -14,7 +14,7 @@ public class FindDonor {
     @Id
     @GeneratedValue
     private int id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "person_email")
     private Person person;
     @Column(columnDefinition = "varchar not null unique")

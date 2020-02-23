@@ -14,7 +14,7 @@ import java.util.Date;
 public class Session {
     @Id
     private String fingerprint;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "person_email")
     private Person person;
     private String refreshToken;

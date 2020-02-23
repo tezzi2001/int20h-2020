@@ -8,8 +8,6 @@ import java.util.List;
 public interface IFindService {
     List<Form> getFindDonorForms();
     List<Form> getFindRecipientForms();
-    @Transactional
     void setFindDonorForms(String email, String phone);
-    @Transactional
     void setFindRecipientForms(String email, String phone);
 }
