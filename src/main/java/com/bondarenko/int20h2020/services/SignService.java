@@ -57,4 +57,35 @@ public class SignService implements ISignService {
     public Optional<Person> getUser(String email) {
         return userRepository.getPersonByEmail(email);
     }
+
+    @Override
+    public void changePassword(String password, String email) {
+        Optional<Person> optionalPerson = userRepository.getPersonByEmail(email);
+        if (optionalPerson.isPresent()) {
+            String hashedPassword = BCrypt.hashpw(password+localParameter, BCrypt.gensalt());
+            Person user = optionalPerson.get();
+            user.setPassword(hashedPassword);
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public void changeEmail(String email) {
+        Optional<Person> optionalPerson = userRepository.getPersonByEmail(email);
+        if (optionalPerson.isPresent()) {
+            Person user = optionalPerson.get();
+            user.setEmail(email);
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public void changeName(String name, String email) {
+        Optional<Person> optionalPerson = userRepository.getPersonByEmail(email);
+        if (optionalPerson.isPresent()) {
+            Person user = optionalPerson.get();
+            user.setName(name);
+            userRepository.save(user);
+        }
+    }
 }
