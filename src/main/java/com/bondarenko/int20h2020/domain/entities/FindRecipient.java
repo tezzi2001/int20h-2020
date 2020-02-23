@@ -16,9 +16,10 @@ public class FindRecipient {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_email")
     private Person person;
-    private int phone;
+    @Column(columnDefinition = "varchar not null unique")
+    private String phone;
 
-    public FindRecipient(Person person, int phone) {
+    public FindRecipient(Person person, String phone) {
         this.person = person;
         this.phone = phone;
     }

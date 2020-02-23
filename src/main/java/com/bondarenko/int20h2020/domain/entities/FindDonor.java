@@ -3,6 +3,7 @@ package com.bondarenko.int20h2020.domain.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint;
 
 import javax.persistence.*;
 
@@ -16,9 +17,10 @@ public class FindDonor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_email")
     private Person person;
-    private int phone;
+    @Column(columnDefinition = "varchar not null unique")
+    private String phone;
 
-    public FindDonor(Person person, int phone) {
+    public FindDonor(Person person, String phone) {
         this.person = person;
         this.phone = phone;
     }

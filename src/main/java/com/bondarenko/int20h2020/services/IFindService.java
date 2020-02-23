@@ -9,7 +9,7 @@ public interface IFindService {
     List<Form> getFindDonorForms();
     List<Form> getFindRecipientForms();
     @Transactional
-    void setFindDonorForms(String email, int phone);
+    void setFindDonorForms(String email, String phone);
     @Transactional
-    void setFindRecipientForms(String email, int phone);
+    void setFindRecipientForms(String email, String phone);
 }

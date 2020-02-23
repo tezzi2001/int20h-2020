@@ -42,12 +42,12 @@ public class FindService implements IFindService {
     }
 
     @Override
-    public void setFindDonorForms(String email, int phone) {
+    public void setFindDonorForms(String email, String phone) {
         findDonorRepository.save(new FindDonor(userRepository.getPersonByEmail(email).get(), phone));
     }
 
     @Override
-    public void setFindRecipientForms(String email, int phone) {
+    public void setFindRecipientForms(String email, String phone) {
         findRecipientRepository.save(new FindRecipient(userRepository.getPersonByEmail(email).get(), phone));
     }
 }

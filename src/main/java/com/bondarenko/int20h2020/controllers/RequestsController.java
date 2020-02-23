@@ -1,7 +1,5 @@
 package com.bondarenko.int20h2020.controllers;
 
-import com.bondarenko.int20h2020.domain.entities.FindDonor;
-import com.bondarenko.int20h2020.domain.entities.Person;
 import com.bondarenko.int20h2020.domain.output.Form;
 import com.bondarenko.int20h2020.services.IFindService;
 import lombok.AllArgsConstructor;
@@ -27,12 +25,12 @@ public class RequestsController {
     }
 
     @PostMapping("/addFindDonor")
-    public void addFindDonor(String email, int phone) {
+    public void addFindDonor(String email, String phone) {
         findService.setFindDonorForms(email, phone);
     }
 
     @PostMapping("/addFindRecipient")
-    public void addFindRecipient(String email, int phone) {
+    public void addFindRecipient(String email, String phone) {
         findService.setFindRecipientForms(email, phone);
     }
 }

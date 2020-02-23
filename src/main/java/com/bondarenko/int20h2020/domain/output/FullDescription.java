@@ -13,5 +13,5 @@ public class FullDescription {
     private String region;
     private char rh;
     private String sex;
-    private int phone;
+    private String phone;
 }
