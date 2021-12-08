@@ -1,36 +1,35 @@
 package com.bondarenko.int20h2020.controllers;
 
-import com.bondarenko.int20h2020.domain.output.Form;
-import com.bondarenko.int20h2020.services.IFindService;
+import com.bondarenko.int20h2020.domain.dto.ApplicationInfoDto;
+import com.bondarenko.int20h2020.services.ApplicationService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @AllArgsConstructor
+@RequestMapping("/api")
+@RestController
 public class RequestsController {
-    private IFindService findService;
+    private ApplicationService applicationService;
 
-    @GetMapping("/findDonors")
-    public List<Form> getFindDonors() {
-        return findService.getFindDonorForms();
+    @GetMapping("/findDonorApplications")
+    public List<ApplicationInfoDto> findDonorApplications() {
+        return applicationService.findDonorApplications();
     }
 
-    @GetMapping("/findRecipient")
-    public List<Form> getFindRecipient() {
-        return findService.getFindRecipientForms();
+    @GetMapping("/findRecipientApplications")
+    public List<ApplicationInfoDto> findRecipientApplications() {
+        return applicationService.findRecipientApplications();
     }
 
-    @PostMapping("/addFindDonor")
-    public void addFindDonor(String email, String phone) {
-        findService.setFindDonorForms(email, phone);
+    @PostMapping("/addDonorApplication")
+    public void addDonorApplication(@RequestBody ApplicationInfoDto applicationInfoDto) {
+        applicationService.addDonorApplication(applicationInfoDto.getId(), applicationInfoDto.getDateTime());
     }
 
-    @PostMapping("/addFindRecipient")
-    public void addFindRecipient(String email, String phone) {
-        findService.setFindRecipientForms(email, phone);
+    @PostMapping("/addRecipientApplication")
+    public void addRecipientApplication(@RequestBody ApplicationInfoDto applicationInfoDto) {
+        applicationService.addRecipientApplication(applicationInfoDto.getId(), applicationInfoDto.getDateTime());
     }
 }
