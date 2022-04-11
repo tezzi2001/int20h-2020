@@ -99,9 +99,9 @@
         <profile>
             <id>dev</id>
             <activation>
-                <os>
-                    <family>windows</family>
-                </os>
+                <property>
+                    <name>!DATABASE_URL</name>
+                </property>
             </activation>
             <properties>
                 <spring.profiles.active>dev</spring.profiles.active>
@@ -111,9 +111,9 @@
         <profile>
             <id>prod</id>
             <activation>
-                <os>
-                    <family>unix</family>
-                </os>
+                <property>
+                    <name>DATABASE_URL</name>
+                </property>
             </activation>
             <properties>
                 <spring.profiles.active>prod</spring.profiles.active>
