@@ -14,6 +14,9 @@ public final class SecurityConstants {
     public static final String FIND_RECIPIENT_APPLICATIONS = "/api/findRecipientApplications";
     public static final String ADD_DONOR_APPLICATIONS = "/api/addDonorApplication";
     public static final String ADD_RECIPIENT_APPLICATIONS = "/api/addRecipientApplication";
+    public static final String FETCH_USER = "/api/user/**";
+    public static final String SAVE_USER = "/api/user";
+    public static final String FETCH_REGIONS = "/api/regions";
 
     private SecurityConstants() {
     }

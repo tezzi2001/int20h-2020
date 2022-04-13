@@ -21,7 +21,6 @@ import static com.bondarenko.int20h2020.util.DateUtils.dateToLocalDate;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-
     private final UserRepository userRepository;
     private final JwtBlacklistRepository jwtBlacklistRepository;
     private final PasswordEncoder passwordEncoder;

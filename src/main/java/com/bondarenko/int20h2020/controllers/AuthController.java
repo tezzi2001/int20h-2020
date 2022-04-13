@@ -13,7 +13,6 @@ import static com.bondarenko.int20h2020.constants.SecurityConstants.TOKEN_PREFIX
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
-    private final UserService userService;
 
     @PostMapping("/register")
     public void register(@RequestBody UserDto userDto) {
@@ -27,14 +26,5 @@ public class AuthController {
         }
         String token = authorization.replace(TOKEN_PREFIX, "");
         authService.logout(token);
-    }
-
-    @GetMapping("/fetchUser")
-    public UserDto fetchUser(@RequestHeader("authorization") String authorization) {
-        if (!authorization.contains(TOKEN_PREFIX)) {
-            return null;
-        }
-        String token = authorization.replace(TOKEN_PREFIX, "");
-        return userService.getUserInfo(token);
     }
 }
