@@ -43,7 +43,6 @@ public class AuthServiceImpl implements AuthService {
                     .rh(userDto.getRh())
                     .sex(userDto.getSex())
                     .phone(userDto.getPhone())
-                    .age(userDto.getAge())
                     .build();
             userRepository.save(user);
         }

@@ -19,13 +19,13 @@ public class RequestsController {
     private final RegionService regionService;
 
     @GetMapping("/findDonorApplications")
-    public List<ApplicationInfoDto> findDonorApplications() {
-        return applicationService.findDonorApplications();
+    public List<ApplicationInfoDto> findDonorApplications(@RequestParam Long userId, @RequestParam String rh, @RequestParam Integer groupNumber, @RequestParam String region) {
+        return applicationService.findDonorApplications(userId, rh, groupNumber, region);
     }
 
     @GetMapping("/findRecipientApplications")
-    public List<ApplicationInfoDto> findRecipientApplications() {
-        return applicationService.findRecipientApplications();
+    public List<ApplicationInfoDto> findRecipientApplications(@RequestParam Long userId, @RequestParam String rh, @RequestParam Integer groupNumber, @RequestParam String region) {
+        return applicationService.findRecipientApplications(userId, rh, groupNumber, region);
     }
 
     @PostMapping("/addDonorApplication")

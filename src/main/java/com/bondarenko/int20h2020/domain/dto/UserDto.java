@@ -1,11 +1,15 @@
 package com.bondarenko.int20h2020.domain.dto;
 
 import com.bondarenko.int20h2020.domain.entities.User;
+import com.bondarenko.int20h2020.util.DateUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @Data
@@ -30,8 +34,7 @@ public class UserDto {
     public UserDto(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
-        this.age = user.getAge();
-
+        this.age = user.getBirthDay() == null ? null : DateUtils.getAge(user.getBirthDay());
         this.name = user.getName();
         this.region = user.getRegion();
         this.sex = user.getSex();

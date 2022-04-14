@@ -21,7 +21,6 @@ public class User {
     @Column(unique = true) private String email;
     private String password;
     @Enumerated(EnumType.STRING) private Role role;
-    private Integer age;
     private String name;
     private String region;
     private String sex;
@@ -36,7 +35,6 @@ public class User {
         this.email = userDto.getEmail() == null ? user.getEmail() : userDto.getEmail();
         this.password = user.getPassword();
         this.role = user.getRole();
-        this.age = userDto.getAge() == null ? user.getAge() : userDto.getAge();
         this.name = userDto.getName() == null ? user.getName() : userDto.getName();
         this.region = userDto.getRegion() == null ? user.getRegion() : userDto.getRegion();
         this.sex = userDto.getSex() == null ? user.getSex() : userDto.getSex();
